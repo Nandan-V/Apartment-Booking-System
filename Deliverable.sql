@@ -1,3 +1,5 @@
+--Task 1:
+
 -- Drop tables in reverse dependency order
 DROP TABLE IF EXISTS Booking;
 DROP TABLE IF EXISTS Apartment;
@@ -44,6 +46,7 @@ CREATE TABLE Booking (
     FOREIGN KEY (ApartmentID) REFERENCES Apartment(ApartmentID)
 );
 
+--Task2: 
 
 INSERT INTO Buildings (BuildingID, Name, Address, ManagerName)
 VALUES
@@ -114,8 +117,18 @@ VALUES
     (19, 9, 2, '2024-10-01', '2024-10-07', 'Confirmed'),
     (20, 10, 14, '2024-10-10', '2024-10-15', 'Cancelled');
 
+-- Task3: 
+
+-- 1.
 SELECT ApartmentID, Type, ApartmentNumber, Rent, Availability
 FROM Apartment
 WHERE BuildingID = 111
 ORDER BY Type;
+
+-- 2.
+SELECT A.ApartmentID, A.Type, A.ApartmentNumber, A.Rent, A.Availability
+FROM Apartment A LEFT JOIN Booking B ON A.ApartmentID = B.ApartmentID AND (B.CheckInDate <= '2024-01-10' AND B.CheckOutDate >= '2024-01-01')
+WHERE A.Availability = TRUE AND B.ApartmentID IS NULL;
+
+-- 3.
 
