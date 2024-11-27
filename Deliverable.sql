@@ -1,4 +1,8 @@
--- Tables are in 3NF
+-- Drop tables in reverse dependency order
+DROP TABLE IF EXISTS Booking;
+DROP TABLE IF EXISTS Apartment;
+DROP TABLE IF EXISTS Guest;
+DROP TABLE IF EXISTS Buildings;
 
 -- Create Buildings table
 CREATE TABLE Buildings (
