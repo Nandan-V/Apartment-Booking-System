@@ -131,4 +131,17 @@ FROM Apartment A LEFT JOIN Booking B ON A.ApartmentID = B.ApartmentID AND (B.Che
 WHERE A.Availability = TRUE AND B.ApartmentID IS NULL;
 
 -- 3.
+SELECT B.BuildingID, B.Name, COUNT(A.ApartmentID) AS BookedApartments
+From Buildings B
+JOIN Apartment A ON B.BuildingID = A.BuildingID
+JOIN Booking BK ON A.ApartmentID = BK.ApartmentID
+GROUP BY B.BuildingID, B.Name
+Order By BookedApartments DESC;
+
+--4. 
+SELECT B.BuildingID, B.Name, SUM(DATEDIFF(BK.CheckOutDate, BK.CheckInDate) * 100) AS TotalRevenue
+FROM Buildings B
+JOIN Apartment A ON B.BuildingID = A.BuildingID
+JOIN Booking BK ON A.ApartmentID = BK.ApartmentID
+GROUP BY B.BuildingID, B.Name
 
