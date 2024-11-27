@@ -138,10 +138,34 @@ JOIN Booking BK ON A.ApartmentID = BK.ApartmentID
 GROUP BY B.BuildingID, B.Name
 Order By BookedApartments DESC;
 
+-- TODO: ASK PROF QUESTIONS FROM 4 TO 7
 --4. 
 SELECT B.BuildingID, B.Name, SUM(DATEDIFF(BK.CheckOutDate, BK.CheckInDate) * 100) AS TotalRevenue
 FROM Buildings B
 JOIN Apartment A ON B.BuildingID = A.BuildingID
 JOIN Booking BK ON A.ApartmentID = BK.ApartmentID
 GROUP BY B.BuildingID, B.Name
+
+-- 5.
+SELECT G.GuestID, G.FirstName, G.LastName, G.Phone
+FROM Guest G
+JOIN Booking BK ON G.GuestID = BK.GuestID
+GROUP BY G.GuestID, G.FirstName, G.LastName, G.Phone
+HAVING COUNT(BK.BookingID) > 2;
+
+-- 6.
+SELECT BookingID, GuestID, ApartmentID, CheckInDate, CheckOutDate, Status
+FROM Booking
+WHERE CURRENT_DATE BETWEEN CheckInDate AND CheckOutDate;
+
+--7. 
+SELECT 
+    BK.BookingID,
+    A.ApartmentNumber,
+    G.FirstName || ' ' || G.LastName AS GuestName,
+    BK.Status
+FROM Booking BK
+JOIN Apartment A ON BK.ApartmentID = A.ApartmentID
+JOIN Guest G ON BK.GuestID = G.GuestID
+WHERE BK.CheckInDate <= '2024-02-01' AND BK.CheckOutDate >= '2024-01-01';
 
