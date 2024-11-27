@@ -1,37 +1,41 @@
-CREATE TABLE Buildings(
-  BuildingID INT PRIMARY KEY,
-  Name VARCHAR (40),
-  Address VARCHAR(40),
-  ManagerName VARCHAR(40)
+-- Tables are in 3NF
+
+-- Create Buildings table
+CREATE TABLE Buildings (
+    BuildingID INT PRIMARY KEY,
+    Name VARCHAR(40) NOT NULL,
+    Address VARCHAR(40) NOT NULL,
+    ManagerName VARCHAR(40) NOT NULL
 );
 
-CREATE TABLE Apartment(
-ApartmentId INT PRIMARY KEY,
-BuildingID INT,
-Type VARCHAR (40),
-ApartmentNumber INT,
-Rent DECIMAL(10, 2),
-Availability Boolean,
-  
-FOREIGN KEY (BuildingID) REFRENCES Buildings(BuildingID)
+-- Create Guest table
+CREATE TABLE Guest (
+    GuestID INT PRIMARY KEY,
+    FirstName VARCHAR(40) NOT NULL,
+    LastName VARCHAR(40) NOT NULL,
+    Phone VARCHAR(15) UNIQUE NOT NULL,
+    Email VARCHAR(100) UNIQUE NOT NULL
 );
 
-CREATE TABLE Booking(
-BookingID INT PRIMARY KEY,
-GuestID INT,
-ApartmentID INT,
-CheckInDate DATE,
-CheckOutDate DATE,
-Status VARCHAR(40),
-
-FOREIGN KEY (GuestID) REFERENCES Guest(GuestID),
-FOREIGN KEY (ApartmentID) REFERENCES Apartment(ApartmentID)
+-- Create Apartment table
+CREATE TABLE Apartment (
+    ApartmentID INT PRIMARY KEY,
+    BuildingID INT NOT NULL,
+    Type VARCHAR(40) NOT NULL,
+    ApartmentNumber INT NOT NULL,
+    Rent DECIMAL(10, 2) NOT NULL,
+    Availability BOOLEAN NOT NULL,
+    FOREIGN KEY (BuildingID) REFERENCES Buildings(BuildingID)
 );
 
-CREATE TABLE Guest(
-GuestID INT PRIMARY KEY,
-FirstName VARCHAR (40),
-LastName VARCHAR (40),
-Phone VARCHAR(15),
-Email VARCHAR(100) 
+-- Create Booking table
+CREATE TABLE Booking (
+    BookingID INT PRIMARY KEY,
+    GuestID INT NOT NULL,
+    ApartmentID INT NOT NULL,
+    CheckInDate DATE NOT NULL,
+    CheckOutDate DATE NOT NULL,
+    Status VARCHAR(40) NOT NULL,
+    FOREIGN KEY (GuestID) REFERENCES Guest(GuestID),
+    FOREIGN KEY (ApartmentID) REFERENCES Apartment(ApartmentID)
 );
