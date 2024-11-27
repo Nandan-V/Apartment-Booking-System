@@ -44,6 +44,7 @@ CREATE TABLE Booking (
     FOREIGN KEY (ApartmentID) REFERENCES Apartment(ApartmentID)
 );
 
+
 INSERT INTO Buildings (BuildingID, Name, Address, ManagerName)
 VALUES
     (111, 'London House', '4th Ave Sw', 'Alice Johnson'),
@@ -113,4 +114,8 @@ VALUES
     (19, 9, 2, '2024-10-01', '2024-10-07', 'Confirmed'),
     (20, 10, 14, '2024-10-10', '2024-10-15', 'Cancelled');
 
+SELECT ApartmentID, Type, ApartmentNumber, Rent, Availability
+FROM Apartment
+WHERE BuildingID = 111
+ORDER BY Type;
 
