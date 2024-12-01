@@ -7,52 +7,58 @@
 /*
  * Task 1: Creating tables in 3NF.
  */
-
 -- Drop tables in reverse dependency order
+
 DROP TABLE IF EXISTS Booking;
 DROP TABLE IF EXISTS Apartment;
 DROP TABLE IF EXISTS Guest;
 DROP TABLE IF EXISTS Buildings;
 
+
 -- Create Buildings table
+-- Creating the "Buildings" table with primary key and fields for building details
 CREATE TABLE Buildings (
-    BuildingID INT PRIMARY KEY,
-    Name VARCHAR(40) NOT NULL,
-    Address VARCHAR(40) NOT NULL,
-    ManagerName VARCHAR(40) NOT NULL
+    BuildingID INT PRIMARY KEY,          -- Unique identifier for each building
+    Name VARCHAR(40) NOT NULL,           -- Building name
+    Address VARCHAR(40) NOT NULL,        -- Building address
+    ManagerName VARCHAR(40) NOT NULL     -- Name of the building manager
 );
 
 -- Create Guest table
+-- Creating the "Guest" table to store information about guests
 CREATE TABLE Guest (
-    GuestID INT PRIMARY KEY,
-    FirstName VARCHAR(40) NOT NULL,
-    LastName VARCHAR(40) NOT NULL,
-    Phone VARCHAR(15) UNIQUE NOT NULL,
-    Email VARCHAR(100) UNIQUE NOT NULL
+    GuestID INT PRIMARY KEY,             -- Unique identifier for each guest
+    FirstName VARCHAR(40) NOT NULL,      -- First name of the guest
+    LastName VARCHAR(40) NOT NULL,       -- Last name of the guest
+    Phone VARCHAR(15) UNIQUE NOT NULL,   -- Guest's phone number (must be unique)
+    Email VARCHAR(100) UNIQUE NOT NULL   -- Guest's email address (must be unique)
 );
 
 -- Create Apartment table
+-- Creating the "Apartment" table to store information about apartments
 CREATE TABLE Apartment (
-    ApartmentID INT PRIMARY KEY,
-    BuildingID INT NOT NULL,
-    Type VARCHAR(40) NOT NULL,
-    ApartmentNumber INT NOT NULL,
-    Rent DECIMAL(10, 2) NOT NULL,
-    Availability BOOLEAN NOT NULL,
-    FOREIGN KEY (BuildingID) REFERENCES Buildings(BuildingID)
+    ApartmentID INT PRIMARY KEY,         -- Unique identifier for each apartment
+    BuildingID INT NOT NULL,             -- Foreign key linking to the "Buildings" table
+    Type VARCHAR(40) NOT NULL,           -- Type of apartment (e.g., studio, 1-bedroom, etc.)
+    ApartmentNumber INT NOT NULL,        -- Apartment number
+    Rent DECIMAL(10, 2) NOT NULL,        -- Monthly rent for the apartment
+    Availability BOOLEAN NOT NULL,       -- Whether the apartment is available (TRUE/FALSE)
+    FOREIGN KEY (BuildingID) REFERENCES Buildings(BuildingID)  -- Foreign key constraint
 );
 
 -- Create Booking table
+-- Creating the "Booking" table to store information about bookings
 CREATE TABLE Booking (
-    BookingID INT PRIMARY KEY,
-    GuestID INT NOT NULL,
-    ApartmentID INT NOT NULL,
-    CheckInDate DATE NOT NULL,
-    CheckOutDate DATE NOT NULL,
-    Status VARCHAR(40) NOT NULL,
-    FOREIGN KEY (GuestID) REFERENCES Guest(GuestID),
-    FOREIGN KEY (ApartmentID) REFERENCES Apartment(ApartmentID)
+    BookingID INT PRIMARY KEY,           -- Unique identifier for each booking
+    GuestID INT NOT NULL,                -- Foreign key linking to the "Guest" table
+    ApartmentID INT NOT NULL,            -- Foreign key linking to the "Apartment" table
+    CheckInDate DATE NOT NULL,           -- Check-in date for the booking
+    CheckOutDate DATE NOT NULL,          -- Check-out date for the booking
+    Status VARCHAR(40) NOT NULL,         -- Status of the booking (e.g., "Confirmed", "Pending")
+    FOREIGN KEY (GuestID) REFERENCES Guest(GuestID),            -- Foreign key constraint
+    FOREIGN KEY (ApartmentID) REFERENCES Apartment(ApartmentID)  -- Foreign key constraint
 );
+
 
 --Task2: 
 
