@@ -59,9 +59,11 @@ CREATE TABLE Booking (
     FOREIGN KEY (ApartmentID) REFERENCES Apartment(ApartmentID)  -- Foreign key constraint
 );
 
+/*
+ * Task 2: Populating sample data into tables.
+ */
 
---Task2: 
-
+-- Insert data into Buildings table
 INSERT INTO Buildings (BuildingID, Name, Address, ManagerName)
 VALUES
     (111, 'London House', '4th Ave Sw', 'Alice Johnson'),
@@ -75,8 +77,7 @@ VALUES
     (119, 'Greenwood Suites', '600 Forest Ave, Calgary', 'Isabella Moore'),
     (110, 'Skyline Towers', '700 Skyline Blvd, Calgary', 'Liam Thompson');
 
-
-
+-- Insert data into Apartment table
 INSERT INTO Apartment (ApartmentID, BuildingID, Type, ApartmentNumber, Rent, Availability)
 VALUES
     (1, 111, 'Studio', 101, 1200.00, TRUE),
@@ -94,8 +95,9 @@ VALUES
     (13, 113, '1-Bedroom', 303, 1450.00, TRUE),
     (14, 114, '2-Bedroom', 403, 2100.00, TRUE),
     (15, 115, 'Studio', 503, 1200.00, TRUE);
- 
- INSERT INTO Guest (GuestID, FirstName, LastName, Phone, Email)
+
+-- Insert data into Guest table
+INSERT INTO Guest (GuestID, FirstName, LastName, Phone, Email)
 VALUES
     (1, 'John', 'Doe', '+14035551234', 'john.doe@example.com'),
     (2, 'Jane', 'Smith', '+14035552345', 'jane.smith@example.com'),
@@ -108,16 +110,17 @@ VALUES
     (9, 'James', 'Lopez', '+14035559012', 'james.lopez@example.com'),
     (10, 'Olivia', 'Hernandez', '+14035550123', 'olivia.hernandez@example.com');
 
+-- Insert data into Booking table
 INSERT INTO Booking (BookingID, GuestID, ApartmentID, CheckInDate, CheckOutDate, Status)
 VALUES
     (1, 1, 2, '2024-01-01', '2024-01-07', 'Confirmed'),
     (2, 2, 5, '2024-01-10', '2024-01-15', 'Pending'),
     (3, 3, 3, '2024-02-01', '2024-02-10', 'Cancelled'),
     (4, 4, 6, '2024-02-15', '2024-02-20', 'Confirmed'),
-    (5, 5, 9, '2024-03-01', '2024-03-05', 'Pending'),
+    (5, 4, 9, '2024-03-01', '2024-03-05', 'Pending'),
     (6, 6, 7, '2024-03-10', '2024-03-15', 'Confirmed'),
     (7, 7, 12, '2024-04-01', '2024-04-07', 'Cancelled'),
-    (8, 8, 8, '2024-04-10', '2024-04-15', 'Confirmed'),
+    (8, 3, 8, '2024-04-10', '2024-04-15', 'Confirmed'),
     (9, 9, 15, '2024-05-01', '2024-05-07', 'Pending'),
     (10, 10, 14, '2024-05-10', '2024-05-15', 'Confirmed'),
     (11, 1, 10, '2024-06-01', '2024-06-07', 'Cancelled'),
@@ -129,7 +132,10 @@ VALUES
     (17, 7, 7, '2024-09-01', '2024-09-07', 'Confirmed'),
     (18, 8, 6, '2024-09-10', '2024-09-15', 'Pending'),
     (19, 9, 2, '2024-10-01', '2024-10-07', 'Confirmed'),
-    (20, 10, 14, '2024-10-10', '2024-10-15', 'Cancelled');
+    (20, 10, 14, '2024-10-10', '2024-11-15', 'Cancelled'),
+    (21, 1, 2, '2024-11-01', '2024-12-05', 'Confirmed'),
+    (22, 2, 3, '2024-11-10', '2024-12-10', 'Confirmed'),
+    (23, 5, 5, '2024-11-01', '2024-12-11', 'Pending');
 
 -- Task3: 
 
