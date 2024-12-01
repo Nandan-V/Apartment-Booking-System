@@ -186,10 +186,7 @@ ORDER BY BookedApartments DESC;
  * - DATEDIFF: Determines the number of days between check-in and check-out dates.
  * - SUM: Aggregates revenue for each building.
  */
-SELECT 
-    B.BuildingID, 
-    B.Name, 
-    SUM(DATEDIFF(BK.CheckOutDate, BK.CheckInDate) * 100) AS TotalRevenue
+SELECT B.BuildingID, B.Name, SUM(DATEDIFF(BK.CheckOutDate, BK.CheckInDate) * 100) AS TotalRevenue
 FROM Buildings B
 JOIN Apartment A ON B.BuildingID = A.BuildingID
 JOIN Booking BK ON A.ApartmentID = BK.ApartmentID
@@ -218,20 +215,10 @@ WHERE CURDATE() BETWEEN CheckInDate AND CheckOutDate;
  * Explanation:
  * - JOIN: Combines Booking, Apartment, and Guest data to produce a comprehensive report.
  */
-SELECT
-    A.ApartmentNumber,
-    A.Type AS ApartmentType,
-    G.FirstName AS GuestFirstName,
-    G.LastName AS GuestLastName,
-    BK.Status AS BookingStatus,
-    BK.CheckInDate,
-    BK.CheckOutDate
-FROM
-    Booking BK
+SELECT A.ApartmentNumber, A.Type AS ApartmentType, G.FirstName AS GuestFirstName, G.LastName AS GuestLastName, BK.Status AS BookingStatus,BK.CheckInDate, BK.CheckOutDate
+FROM Booking BK
 JOIN Apartment A ON BK.ApartmentID = A.ApartmentID
 JOIN Guest G ON BK.GuestID = G.GuestID
-WHERE
-    BK.CheckInDate >= '2024-01-01' AND BK.CheckOutDate <= '2024-12-31'  -- Replace with your desired date range
-ORDER BY
-    BK.CheckInDate;
+WHERE BK.CheckInDate >= '2024-01-01' AND BK.CheckOutDate <= '2024-12-31'  -- Replace with your desired date range
+ORDER BY BK.CheckInDate;
 
