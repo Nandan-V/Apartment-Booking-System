@@ -1,3 +1,9 @@
+/*
+    Contributors: Sri Nandan bharadwaj velamakanni, Mohamed Koussah, Harith Obeid, Ali Mir
+    Date: 2024-11-29
+    Description: This script creates and manipulates a database for an apartment booking system.
+    
+*/
 --Task 1:
 
 -- Drop tables in reverse dependency order
