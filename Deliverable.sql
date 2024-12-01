@@ -4,7 +4,9 @@
     Description: This script creates and manipulates a database for an apartment booking system.
     
 */
---Task 1:
+/*
+ * Task 1: Creating tables in 3NF.
+ */
 
 -- Drop tables in reverse dependency order
 DROP TABLE IF EXISTS Booking;
