@@ -219,6 +219,6 @@ SELECT A.ApartmentNumber, A.Type AS ApartmentType, G.FirstName AS GuestFirstName
 FROM Booking BK
 JOIN Apartment A ON BK.ApartmentID = A.ApartmentID
 JOIN Guest G ON BK.GuestID = G.GuestID
-WHERE BK.CheckInDate >= '2024-01-01' AND BK.CheckOutDate <= '2024-12-31'  -- Replace with your desired date range
+WHERE BK.CheckInDate >= '2024-01-01' AND BK.CheckOutDate <= '2024-12-31'  
 ORDER BY BK.CheckInDate;
 
